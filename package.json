@@ -1,0 +1,26 @@
+{
+    "name": "pcd-add",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@pcd/passport-interface": "^0.6.2",
+        "@pcd/pcd-types": "^0.6.2",
+        "@pcd/rsa-pcd": "^0.1.2",
+        "@types/node": "20.5.3",
+        "@types/react": "18.2.21",
+        "@types/react-dom": "18.2.7",
+        "eslint": "8.47.0",
+        "eslint-config-next": "13.4.19",
+        "next": "13.4.19",
+        "node-rsa": "^1.1.1",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "typescript": "5.1.6"
+    }
+}
