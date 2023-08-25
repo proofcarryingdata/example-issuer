@@ -5,7 +5,7 @@
     "source": "src/index.html",
     "scripts": {
         "start": "parcel --open",
-        "build": "parcel build"
+        "build": "parcel build --publicUrl /example-issuer"
     },
     "dependencies": {
         "@pcd/eddsa-pcd": "^0.1.1",
