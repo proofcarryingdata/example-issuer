@@ -1,9 +1,12 @@
 import { EdDSAPCDPackage } from "@pcd/eddsa-pcd"
 import { constructPassportPcdProveAndAddRequestUrl, openPassportPopup } from "@pcd/passport-interface"
 import { ArgumentTypeName } from "@pcd/pcd-types"
+import { useCallback, useState } from "react"
 
 export default function App() {
-    async function addEdDSASignature() {
+    const [color, setColor] = useState("white")
+
+    const addEdDSAPCD = useCallback(() => {
         const url = constructPassportPcdProveAndAddRequestUrl<typeof EdDSAPCDPackage>(
             process.env.PCDPASS_URL,
             window.location.origin + "/popup",
@@ -11,8 +14,7 @@ export default function App() {
             {
                 id: {
                     argumentType: ArgumentTypeName.String,
-                    value: undefined,
-                    userProvided: true
+                    value: undefined
                 },
                 privateKey: {
                     argumentType: ArgumentTypeName.String,
@@ -21,7 +23,7 @@ export default function App() {
                 },
                 message: {
                     argumentType: ArgumentTypeName.StringArray,
-                    value: ["0x10"]
+                    value: [color]
                 }
             },
             {
@@ -30,7 +32,17 @@ export default function App() {
         )
 
         openPassportPopup("/popup", url)
-    }
+    }, [color])
 
-    return <button onClick={addEdDSASignature}>Sign a message and add it to PCD pass</button>
+    return (
+        <>
+            <select name="colors" value={color} onChange={(event: any) => setColor(event.target.value)}>
+                <option value="0xffffff">White</option>
+                <option value="0xA27A7A">Red</option>
+                <option value="0xA2A08B">Yellow</option>
+                <option value="0xB8B8B8">Gray</option>
+            </select>
+            <button onClick={addEdDSAPCD}>Add PCD signature</button>
+        </>
+    )
 }

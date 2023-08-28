@@ -1,8 +1,11 @@
 import { createRoot } from "react-dom/client"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import App from "./App"
 import Popup from "./Popup"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import "./index.css"
 
+// TODO: change to createHashRouter after merging
+// Zupass PR and deploying new version.
 const router = createBrowserRouter([
     {
         path: "/",
