@@ -1,10 +1,15 @@
 import { useCallback, useState } from "react"
 import { constructPassportPcdAddRequestUrl, openPassportPopup } from "@pcd/passport-interface"
 
+/**
+ * This component allows users to choose a color, which is then signed by
+ * the issuer (server) and added to the user's PCDPass as an EdDSA PCD.
+ */
 export default function App() {
     const [color, setColor] = useState("0xffffff")
 
     const addEdDSAPCD = useCallback(async () => {
+        // Send the color to the server which signs it and returns an EdDSA PCD.
         const response = await fetch(`http://localhost:${process.env.SERVER_PORT}/sign-message`, {
             method: "POST",
             mode: "cors",
@@ -18,6 +23,7 @@ export default function App() {
 
         const { serializedPCD } = await response.json()
 
+        // The EdDSA is added to the user's PCDPass.
         const url = constructPassportPcdAddRequestUrl(
             process.env.PCDPASS_URL as string,
             window.location.origin + "/popup",

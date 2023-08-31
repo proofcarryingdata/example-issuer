@@ -12,6 +12,7 @@ if (!process.env.PRIVATE_KEY) {
     process.exit(1)
 }
 
+// The PCD package must be initialized before using its methods.
 await initEdDSAPCD()
 
 const app: Express = express()
@@ -26,7 +27,7 @@ app.get("/", (_req: Request, res: Response) => {
     res.send("Express + TypeScript Server")
 })
 
-// Sign a message with the server private key and return a PCD.
+// It signs a message with the issuer EdDSA private key and returns a serialized PCD.
 app.post("/sign-message", async (req: Request, res: Response) => {
     try {
         if (!req.body.color) {
