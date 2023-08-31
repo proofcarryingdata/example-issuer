@@ -1,0 +1,30 @@
+{
+    "name": "client",
+    "version": "0.1.0",
+    "private": true,
+    "source": "src/index.html",
+    "scripts": {
+        "start": "parcel --cache-dir .parcel-cache/ --no-cache --open",
+        "build": "parcel build --cache-dir .parcel-cache/"
+    },
+    "dependencies": {
+        "@pcd/passport-interface": "^0.6.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.15.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.21",
+        "@types/react-dom": "^18.2.7",
+        "assert": "^2.0.0",
+        "browserify-zlib": "^0.2.0",
+        "buffer": "^5.5.0||^6.0.0",
+        "crypto-browserify": "^3.12.0",
+        "events": "^3.1.0",
+        "os-browserify": "^0.3.0",
+        "parcel": "^2.9.3",
+        "path-browserify": "^1.0.0",
+        "process": "^0.11.10",
+        "stream-browserify": "^3.0.0"
+    }
+}
