@@ -11,12 +11,12 @@
 
 Proof-Carrying Data (PCD) is a self-contained, independent entity of data carrying sufficient information to be verified and interpreted by a consumer without reliance on exchanges between the producer and consumer. It comprises two primary components: the 'claim,' a straightforward statement (dubbed 'facts'), and the 'proof,' proving the truth of the statement by mathematical or cryptographic means. The elegance lies in the fact that no external information is necessary for validation; everything essential resides within. PCDs have the potential to revolutionize data handling. Envision a world where data flows unrestricted, free from the confinement of silos. PCDs can restore data ownership to individuals, facilitating portability across platforms, and removing barriers. PCD Issuers, whether your bank or Reddit, offer data imbued with cryptography or math (think Merkle Trees and signatures). You can blend it with your private data, creating your unique PCD. Any third-party application (PCD Consumer), from social networks to lending services, can wield this PCD as a key to unlock their services.
 
-## Workflow
+## ▶️ Workflow
 
 Now, let's embark on a step-by-step journey to harness the potential of Proof-Carrying Data (PCD) utilizing EdDSA PCDs. In this scenario, a PCD comprises a 'claim,' represented as a simple message (the name of your chosen color), and a 'proof' (a signature) crafted by the PCD Issuer's confidential EdDSA key.
 
 ### Step 1: Prepare Your PCD Passport
-Before delving into PCDs, ensure you have a valid PCD Passport identity instance. Your PCD Passport can accommodate multiple identities, each potentially carrying several PCDs (akin to attestations). You can efficiently manage these identities using [zupass](https://github.com/proofcarryingdata/zupass/).
+Before delving into PCDs, ensure you have a valid PCD Passport identity instance. Your PCD Passport can accommodate multiple identities, each potentially carrying several PCDs (akin to attestations). You can efficiently manage these identities using the [zupass](https://github.com/proofcarryingdata/zupass/) PCD Passport.
 
 ### Step 2: Request a PCD from the PCD Issuer
 Here's where the magic begins. You'll interact with the PCD Issuer implemented in this repository to get a PCD attesting to a signature on your chosen color name message. The process unfolds as follows:
@@ -54,13 +54,13 @@ cd <your-repo> && yarn
 
 ## 📜 Usage
 
-Copy the `.env.example` file as `.env`:
+To run everything, you must have a local instance of the [zupass](https://github.com/proofcarryingdata/zupass/) PCD Passport on your machine. Follow this [guide](https://github.com/proofcarryingdata/zupass/#for-developers-local-development) to get it running correctly.
+
+Copy the `.env.example` file as `.env` and add your environment variables:
 
 ```bash
 cp .env.example .env
 ```
-
-And add your environment variables.
 
 Run the following command to build (client + server):
 
