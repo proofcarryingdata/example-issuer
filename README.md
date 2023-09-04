@@ -50,7 +50,7 @@ With your PCD secured in your Passport, it's time to interact with the PCD Consu
 0. Follow the [🛠 Install](https://github.com/proofcarryingdata/example-consumer#-install) and [📜 Usage](https://github.com/proofcarryingdata/example-consumer#-usage) instructions in the [example-consumer](https://github.com/proofcarryingdata/example-consumer) repository. You should have the _client_ (`localhost:34269`) and _server_ (`localhost:3006`) up and- unning at the end of the process.
 1. Navigate through the client. Click on `Get PCD Signature` and then select your PCD. 
 
-![PCD Consumer Select](https://bafybeifvww36bjzgd4pcg2xnqswuv2qivkvycdokbamfmvu2zxcdrvs6ke.ipfs.w3s.link/pcdConsumerSelect.png)
+![PCD Consumer Select](https://bafybeianxagmmliedan3r4qnwvasehcv74rieysfjy2ebmwfljdg67xvqi.ipfs.w3s.link/photo_2023-09-04_17-16-59.jpg)
 
 2. The PCD Consumer client interacts with the server that checks if the _proof_ matches with the _claim_.
 3. If the PCD proves its correctness, you should see an `alert` on the client and the background color of the page should change to your chosen color accordingly.
@@ -69,7 +69,7 @@ The PCD Issuer should generate a _proof_ for a user _claim_ bundled in a form of
 
 2. Implementation of an endpoint (POST) to forward the PCD computation request (e.g., [`sign-message`](https://github.com/proofcarryingdata/example-issuer/blob/main/apps/server/src/index.ts#L31)). The API will need to verify the correctness of the forwarded information related to the _claim_, construct the PCD ([`prove()`](https://github.com/proofcarryingdata/zupass/blob/main/packages/eddsa-pcd/src/EdDSAPCD.ts#L82)), return the PCD in a serialized form back to the client ([`serialize()`](https://github.com/proofcarryingdata/zupass/blob/main/packages/eddsa-pcd/src/EdDSAPCD.ts#L141)).
 
-https://github.com/proofcarryingdata/example-issuer/blob/main/apps/server/src/index.ts#L31-L71
+https://github.com/proofcarryingdata/example-issuer/blob/a339397f66fdced7cf586bf562567f2084e073b9/apps/server/src/index.ts#L31-L71
 
 ### Client
 
@@ -79,7 +79,7 @@ https://github.com/proofcarryingdata/example-issuer/blob/main/apps/server/src/in
 
 2. Once the serialized PCD has been obtained, through the method [`constructPassportPcdAddRequestUrl()`](https://github.com/proofcarryingdata/example-issuer/blob/main/apps/client/src/App.tsx#L32), it will be possible to construct a parameterized URL with the PCD information that will allow the interaction with the PCD Passport via popup ([`openPassportPopup()`](https://github.com/proofcarryingdata/zupass/blob/main/packages/passport-interface/src/PassportPopup.ts#L90)) from which the user can finalize the addition of the PCD.
 
-https://github.com/proofcarryingdata/example-issuer/blob/main/apps/client/src/App.tsx#L12-L39
+https://github.com/proofcarryingdata/example-issuer/blob/a339397f66fdced7cf586bf562567f2084e073b9/apps/client/src/App.tsx#L12-L39
 
 ## 🛠 Install
 
