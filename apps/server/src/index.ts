@@ -7,7 +7,7 @@ import express, { Express, Request, Response } from "express"
 dotenv.config({ path: `${process.cwd()}/../../.env` })
 
 if (!process.env.PRIVATE_KEY) {
-    console.error(`[ERROR] The private key hasn't been set in the environment variables!`)
+    console.error(`[ERROR] The private key hasn't been set in the environment variables`)
 
     process.exit(1)
 }
@@ -27,36 +27,45 @@ app.get("/", (_req: Request, res: Response) => {
     res.send("Express + TypeScript Server")
 })
 
-// It signs a message with the issuer EdDSA private key and returns a serialized PCD.
+// Sign a message with the issuer EdDSA private key and returns a serialized PCD.
 app.post("/sign-message", async (req: Request, res: Response) => {
     try {
         if (!req.body.color) {
-            console.error(`[ERROR] No color specified!`)
+            console.error(`[ERROR] No color specified`)
 
             res.status(400).send()
-        } else {
-            console.debug(`[OKAY] color ${process.env.COLOR} has been successfully sent`)
-
-            const pcd = await prove({
-                id: {
-                    argumentType: ArgumentTypeName.String
-                },
-                message: {
-                    argumentType: ArgumentTypeName.StringArray,
-                    value: [req.body.color]
-                },
-                privateKey: {
-                    argumentType: ArgumentTypeName.String,
-                    value: process.env.PRIVATE_KEY
-                }
-            })
-
-            const serializedPCD = await serialize(pcd)
-
-            res.json({ serializedPCD }).status(200)
+            return
         }
+
+        if (!/^0x[0-9A-F]{6}$/i.test(req.body.color)) {
+            console.error(`[ERROR] No valid color`)
+
+            res.status(400).send()
+            return
+        }
+
+        const pcd = await prove({
+            id: {
+                argumentType: ArgumentTypeName.String
+            },
+            message: {
+                argumentType: ArgumentTypeName.StringArray,
+                value: [req.body.color]
+            },
+            privateKey: {
+                argumentType: ArgumentTypeName.String,
+                value: process.env.PRIVATE_KEY
+            }
+        })
+
+        console.debug(`[OKAY] color ${req.body.color} has been successfully signed`)
+
+        const serializedPCD = await serialize(pcd)
+
+        res.json({ serializedPCD }).status(200)
     } catch (error: any) {
         console.error(`[ERROR] ${error}`)
+
         res.send(500)
     }
 })
